@@ -17,7 +17,6 @@ public class LongestSubStrinWithAtmostKElements {
 	private static int longestSubstringWithAtmostKElements(String str, int k) {
 		int max = 0, l = 0, r = 0;
 		Map<Character, Integer> map = new HashMap<>();
-
 		while (r < str.length()) {
 			char _r = str.charAt(r);
 			if (map.containsKey(str.charAt(r))) {
@@ -25,7 +24,7 @@ public class LongestSubStrinWithAtmostKElements {
 			} else {
 				map.put(_r, 1);
 			}
-			if (map.size() > k) {
+			if (map.size() == k) {
 				char _l = str.charAt(l);
 				map.put(_l, map.get(_l) - 1);
 				if (map.get(_l) == 0) {

@@ -56,7 +56,42 @@ public class MinimumWindowSubString {
 	}
 
 	/**
-	 * write explanation clearly.
+	 *<pre>
+	 *poroblem statement: find the minimum substring which contains all the characters of another string
+	 *
+	 *example :1 
+	 *	String s = "ADOBECODEBANC"; String t = "ABC";
+	 *
+	 *OUT put = "BANC"
+	 *
+	 *example 2 : String s = "cabwefgewcwaefgcf", String t = "cae"
+	 *	
+	 *OUT put = "cwae"
+	 *
+	 *A character can be lower or upper case and it can be repeated many times in the t string.
+	 *we need to find the minimum subarray that contains all the chars and same frequency of chars in t string.
+	 *
+	 *to solve this we need hash[256] each represent a char.
+	 *
+	 *Steps:
+	 *
+	 *1. initilize hash[256] with chars frequency from 0 i.e if 'A' is present in t ,then hash['A'] = 0
+	 *	initialize all the other chars with -1
+	 *2. int count =0, l=0, r=0, minLen = string.length, startingIndex;
+	 *3. maintain t string's length. it is used to identify a substring whether it contains all the t string chars.
+	 *4. on each iteration over string s
+	 *	1. Take each char and decrease the hash[s.charAt(r)]--
+	 *	   While decreasing, check if the hash[s.cahrAt(r)] is >0;
+	 *	   and increase the count if hash[s.charAt(r)] is >0
+	 *	2. when (count == t.length)  that means, all the chars in t string are present in the current substring.
+	 *	3. Now, we need to find whether that is min substring or not, by shrinking the current substring.
+	 *	4. while shrinking, do hash[s.chartAt(l)]++ and check if the value is >= 0 then decrease the count.
+	 *	5. until the (count == t.length) it is a valid substring and update the minLen and also update the startingIndex
+	 *	   with the latest 'l' value.
+	 *	6. use s.substrin(startingIndex, startingIndex + min);
+	 *</pre>
+	 *
+	 *
 	 */
 	public static String minWindow_Optimal(String s, String t) {
 		// edge case if t length > s length

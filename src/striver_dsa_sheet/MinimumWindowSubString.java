@@ -9,6 +9,17 @@ public class MinimumWindowSubString {
 //		System.out.println(minWindow("cabwefgewcwaefgcf", "cae"));
 		System.out.println(minWindow_Optimal(s, t));
 		System.out.println(minWindow("a", "aa"));
+		String num ="24123";
+		int ans = 48;
+		for (int i = 0; i < num.length(); i++) {
+			if (i % 2 == 0) {
+				ans = ans + (num.charAt(i));
+
+			} else {
+				ans = ans - (num.charAt(i));
+			}
+			System.out.println(ans);
+		}
 	}
 
 	public static String minWindow(String s, String t) {

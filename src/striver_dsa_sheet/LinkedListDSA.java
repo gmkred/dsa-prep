@@ -298,31 +298,31 @@ public class LinkedListDSA {
 		}
 	}
 
-}
+	/**
+	 * A LinkedList contanins an object or a value and an address to next list.
+	 * 
+	 */
+	static class Node {
+		int val;
+		Node next;
 
-/**
- * A LinkedList contanins an object or a value and an address to next list.
- * 
- */
-class Node {
-	int val;
-	Node next;
+		public Node() {
+		}
 
-	public Node() {
-	}
+		public Node(int val, Node next) {
+			this.val = val;
+			this.next = next;
+		}
 
-	public Node(int val, Node next) {
-		this.val = val;
-		this.next = next;
-	}
+		public Node(int val) {
+			this.val = val;
+		}
 
-	public Node(int val) {
-		this.val = val;
-	}
+		@Override
+		public String toString() {
+			return "Node [val=" + val + ", next=" + next + "]";
+		}
 
-	@Override
-	public String toString() {
-		return "Node [val=" + val + ", next=" + next + "]";
 	}
 
 }

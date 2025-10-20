@@ -4,7 +4,7 @@ package arrays;
  * A turbulent array is an array where
  * 
  * 
- * Still did not understood
+ * yet to understood
  * 
  */
 

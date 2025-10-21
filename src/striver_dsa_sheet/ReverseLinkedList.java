@@ -38,7 +38,7 @@ public class ReverseLinkedList {
 	 * </pre>
 	 */
 	private static Node reverseRecursively_striverway(Node head) {
-
+		Character.toLowerCase(' ');
 		if (head.next == null) {
 			return head;
 		}

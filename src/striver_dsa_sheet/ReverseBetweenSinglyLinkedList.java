@@ -1,75 +1,89 @@
 package striver_dsa_sheet;
-
-import striver_dsa_sheet.DoublyLinkedList.Node;
-/**
- * yet to solve
+/**<pre>
+ * 
+ * problem statement 
+ * 
+ * Head = 1 -> 2 -> 3 -> 4 -> 5 -> 6
+ * left =2
+ * right =4
+ * 
+ * Head = 1 -> 4 -> 3 -> 2 -> 5 -> 6
+ * 
+ * </pre>
  * */
 public class ReverseBetweenSinglyLinkedList {
 
-	static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode() {
-		}
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-
-		@Override
-		public String toString() {
-			return "ListNode [val=" + val + ", next=" + next + "]";
-		}
-	}
-
-	static ListNode head = null;
-
 	public static void main(String[] args) {
-		head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-		reverseBetween(head, 2, 4);
-		traversedoublyLinkedlist();
-
+		Node node = new Node();
+		Node head = node.generateSInglyLinkedList(new int[] { 1, 2, 3, 4, 5, 6 });
+		node.traverse(head);
+		Node resultHead = reverseBetween(head, 2, 4);
+		node.traverse(resultHead);
 	}
 
-	public static void traversedoublyLinkedlist() {
-		ListNode temp = head;
-		while (temp != null) {
-			System.out.print(temp.val + " ");
-			temp = temp.next;
-		}
-		System.out.println();
-	}
-
-	public static ListNode reverseBetween(ListNode head, int left, int right) {
-
-		ListNode l = head;
-		ListNode prev = null;
-		ListNode r = null;
-		int len = right - left;
-		int c = 0;
+	public static Node reverseBetween(Node head, int left, int right) {
 		if (right - left == 0) {
 			return head;
 		}
-		while (l != null) {
-			c++;
-			if (c >= left && c <= right) {
-				prev.next = r;
-				l.next = r.next;
-				r.next = l;
-			} else {
-				prev = l;
-			}
-			l = l.next;
-			if (l != null) {
-				r = l.next;
-			}
+		Node temp = head;
+		Node befRev = null;
+		int _l = left;
+		/**<pre>
+		 * first get to the point from where we need to reverse.
+		 * </pre>
+		*/
+		while (temp != null && _l > 1) {
+			befRev = temp;
+			temp = temp.next;
+			_l--;
 		}
+		/**<pre>
+		 * we need to point reverse end, after reversing the list,
+		 * we need to continue the remaining node pointing as reverse end next.
+		 * </pre>
+		 * */
+		Node revEnd = temp;
+		Node cur = temp;
+		
+		/**No of nodes need to be reverse. From 2 to 4 we have 3 nodes so +1
+		 * */
+		int noOfNodes = right - left + 1;
+		Node next = null;
+		Node prev = null;
+		/**
+		 * <pre>
+		 * loop through the node which needs to be reversed.
+		 * change the pointers for cur to point prev.
+		 * <pre>
+		 * */
+		while (cur != null && noOfNodes > 0) {
+			next = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = next;
+			noOfNodes--;
+		}
+		/**<pre>
+		 *  After iteration prev will be the reversed list head and 
+		 *  cur point's to next which will be the continuation of normal list.
+		 *
+		 *  If before reverse is null that means, reverse is started from the beginning.
+		 *  So, point the head to new head (reverse head).
+		 *  </pre>
+		 */
+		if (befRev != null) {
+			befRev.next = prev;
+		} else {
+			head = prev;
+		}
+		/**
+		 * <pre>
+		 * reverse end's next to point the cur. becasue cur will be pointing to 
+		 * the node just after the range of reverse list.
+		 * </pre>
+		 * */
+		revEnd.next = cur;
+
 		return head;
 	}
 }

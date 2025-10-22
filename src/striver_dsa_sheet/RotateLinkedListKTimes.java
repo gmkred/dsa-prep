@@ -14,6 +14,10 @@ public class RotateLinkedListKTimes {
 
 	}
 
+	private static void rotateListKTimes_circularList(int k) {
+
+	}
+
 	/**
 	 * TC : O(N)+O(K%N) SP : (1)
 	 * 

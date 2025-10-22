@@ -190,7 +190,7 @@ public class DoublyLinkedList {
 		head.prev = null;
 	}
 
-	private static void generateDoublyLinkedList(int[] arr) {
+	public static Node generateDoublyLinkedList(int[] arr) {
 
 		for (int i = 0; i < arr.length; i++) {
 			Node newNode = new Node(arr[i]);
@@ -203,6 +203,7 @@ public class DoublyLinkedList {
 				tail = newNode;
 			}
 		}
+		return head;
 	}
 
 	public static void traversedoublyLinkedlist() {

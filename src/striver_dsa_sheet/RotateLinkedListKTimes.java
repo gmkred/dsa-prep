@@ -9,12 +9,35 @@ public class RotateLinkedListKTimes {
 		arr = new int[] { 1, 2, 3, 4, 5 };
 		Node node = new Node();
 		head = node.generateSInglyLinkedList(arr);
-		rotateListKTimes(2);
+//		rotateListKTimes(2);
+//		node.traverse(head);
+		rotateListKTimes_circularList(2);
 		node.traverse(head);
 
 	}
 
+	/**
+	 * TC : O(N) + O(K%Length) SP : O(1)
+	 */
 	private static void rotateListKTimes_circularList(int k) {
+
+		Node temp = head;
+
+		int length = 1;
+		while (temp.next != null) {
+			temp = temp.next;
+			length++;
+		}
+		temp.next = head;
+		temp = temp.next;
+		// we need to find the reminder for large number given for K
+		int n = k % length;
+		while (n != 0) {
+			temp = temp.next;
+			n--;
+		}
+		head = temp.next;
+		temp.next = null;
 
 	}
 

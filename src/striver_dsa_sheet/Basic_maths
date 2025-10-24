@@ -1,0 +1,54 @@
+Summation of N numbers
+
+Formula derivation:
+To find sum of first N numbers, we need the reverse numbers from N to 1
+add these 2 series of numbers.
+
+with this we will get the same number in the entire series. and the sum of the new series will
+be N(N+1) and this will be the 2 times the actual sum, because we have added the reversed series.
+so divide the sum/2 to get actual series sum.
+
+
+S{n} =	1+	2+		3+ 		... +(n-1)+	n)
+S{n} =	n+	(n-1)+	(n-2)+ 	... +2+		1)
+		+
+2S(n)=	(n+1)+(n+1)+(n+1) 	...	(n+1)      n times
+
+
+2S(n) = n(n+1)
+s(n) = n(n+1)/2
+
+To sum from A to N natural numbers
+K = 3
+
+N(N+1)/2 - (N-(k-1))*(N+(K-1)+)/2
+OR
+N(N+1)/2 - (k-1)*((k-1)+1)/2
+
+Example : 
+
+sum 0f first 10 numbers
+
+a=	1	2	3	4	5	6	7	8	9	10
+a=	10	9	8	7	6	5	4	3	2	1
+	+
+2a= 11	11	11	11	11	11	11	11	11	11       10 times
+
+2a= 10(11)
+a = 10(11)/2  == 5(11) == 55
+
+Example 2 :
+sum of natural numbers from 3 to 10
+
+a=	3	4	5	6	7	8	9	10
+a=	10	9	8	7	6	5	4	3
+	+
+2a= 13	13	13	13	13	13	13	13       8 times
+
+2a= 8(13)
+a = 8(13)/2  == 4(13) == 52
+
+
+	
+	
+	

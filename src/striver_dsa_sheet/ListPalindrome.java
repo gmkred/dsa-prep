@@ -16,10 +16,9 @@ public class ListPalindrome {
 	}
 
 	/**
-	 * TC : O(2N)
-	 * SP : O(N)
+	 * TC : O(2N) SP : O(N)
 	 * 
-	 * */
+	 */
 	private static boolean isListPalindrome_extreme() {
 		Stack<Integer> stack = new Stack();
 		Node temp = head;

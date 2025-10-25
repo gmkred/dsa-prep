@@ -1,0 +1,21 @@
+HashMap:
+
+Insertion:
+
+O(1) Best case because if bucket is empty the inserted Entry will take 1 step.
+O(N) Worst case because if all entries goes to same bucket it takes N steps to insert.
+
+
+Retrieval
+O(1) best case, if entry present in the beginning of the bucket.
+O(N) worst case if the entry present at the end of the bucket.
+
+Delete:
+O(1) best
+O(N) worst
+
+Resize:
+
+when hashmap size hits the load factor, it starts shifting the entries 
+to new hashmap with larger size than current hashmap size.
+O(N) best and worst

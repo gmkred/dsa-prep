@@ -80,11 +80,11 @@ public class SortLinkedListWith0s1s2s {
 		temp0 = temp1 = temp2 = _temp0_begin = _temp1_begin = _temp2_begin = null;
 
 	}
-/**
- * TC : O(2N)
- * SP : O(N)
- * 
- * */
+
+	/**
+	 * TC : O(2N) SP : O(N)
+	 * 
+	 */
 	private static void sortListOnlyValues() {
 		int count0 = 0, count1 = 0, count2 = 0;
 		Node temp = head;

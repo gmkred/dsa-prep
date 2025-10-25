@@ -2,6 +2,8 @@ package striver_dsa_sheet;
 
 import java.util.Comparator;
 
+import striver_dsa_sheet.ddl.Node;
+
 public class NodeComparator implements Comparator<Node> {
 
 	@Override

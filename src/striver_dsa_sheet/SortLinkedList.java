@@ -22,7 +22,7 @@ public class SortLinkedList {
 		if (head.next == null) {// return if there is only single element in the list
 			return head;
 		}
-
+		// break down the lists into 2 lists
 		Node mid = midNode(head);
 		Node leftHead = head;
 		Node rightHead = mid.next;
@@ -30,6 +30,7 @@ public class SortLinkedList {
 
 		Node left = listmergeSort(leftHead);
 		Node right = listmergeSort(rightHead);
+		// merge the broken lists
 		return merge(left, right);
 
 	}

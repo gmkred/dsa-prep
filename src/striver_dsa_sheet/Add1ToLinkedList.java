@@ -40,9 +40,10 @@ public class Add1ToLinkedList {
 		Node result = recursiveByStriver(head);
 		node.traverse(result);
 	}
+
 	/**
 	 * striver's recursive by returning the carry.
-	 * */
+	 */
 	private static Node recursiveByStriver(Node head) {
 
 		int carry = helper(head);

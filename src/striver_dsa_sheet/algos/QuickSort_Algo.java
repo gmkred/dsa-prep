@@ -69,8 +69,8 @@ package striver_dsa_sheet.algos;
 public class QuickSort_Algo {
 
 	public static void main(String[] args) {
-//		int arr[] = { 4, 6, 2, 5, 7, 9, 1, 3, 2 };
-		int arr[] = { 110, 100, 0 };
+		int arr[] = { 4, 6, 2, 5, 7, 9, 1, 3, 2 };
+//		int arr[] = { 110, 100, 0 };
 		quickSort(arr, 0, arr.length - 1);
 		for (int i : arr) {
 			System.out.print(i + " ");

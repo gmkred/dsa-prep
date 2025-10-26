@@ -1,0 +1,10 @@
+Array:
+
+max size inside main() 10^6
+global array size can be 10^7
+
+Array stored in computer memory in contiguous way.
+
+
+{1, 2,  3,  4,  5}
+x  x+1 x+2 x+3 x+4

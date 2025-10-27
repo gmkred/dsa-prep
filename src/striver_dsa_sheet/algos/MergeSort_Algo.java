@@ -52,7 +52,7 @@ import java.util.List;
  * On each level it sorts the array so it will be of N corresponding to each level
  *  
  * O(N * log N) 
- * By this
+ * By this SC : O(N) - auxiliary array of each merging operation
  * </pre>
  * 
  */

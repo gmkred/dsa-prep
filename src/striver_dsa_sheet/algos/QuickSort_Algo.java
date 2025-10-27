@@ -78,9 +78,11 @@ public class QuickSort_Algo {
 	}
 
 	/**
-	 * TC : O(N2) = one each stack it traverse through all the elements.
+	 * TC : O(N * Log N) to O(N^2) based on the pivot choice. poot pivot choice
+	 * leads O(N^2)
 	 * 
-	 * SP : O(1) = no extra memory is used.
+	 * SP : O(1) = no extra memory is used. but O(log N) to O(N) in recursive stack
+	 * memory
 	 * 
 	 */
 	public static void quickSort(int arr[], int low, int high) {

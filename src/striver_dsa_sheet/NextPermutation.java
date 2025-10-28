@@ -46,6 +46,12 @@ public class NextPermutation {
 	 * arr[3] = 1 
 	 * Is the first smallest number found from the right;
 	 * Why it works: 
+	 * Assume we have 
+	 * {1 4 3 2 1}
+	 * And we try to randomly swap an element.
+	 * {1,4,2,3,1} = this has become smaller value than the given value, but need next permutation.
+	 * so if we swap decreasing toward right values, it will alwasy result in smaller values.
+	 * 
 	 * 	Because, when we have increasing numbers from right and there found a smallest number when compared adjacently.
 	 * 	That means, the breakpoint if swapped with the slightly larger number in the right side of breakpoint
 	 * 	and reverse the array after the break point will actually results in next permutation.
@@ -60,6 +66,9 @@ public class NextPermutation {
 	 * 
 	 * If there is no breakpoint found, that means it is teh last permutation of the arr, so reverse the array to get the next(first permutation).
 	 * 
+	 * 
+	 * TC : O(3N)
+	 * SC : O(1)
 	 * </pre>
 	 */
 	private static int[] nextPermutation_optimal(int arr[]) {

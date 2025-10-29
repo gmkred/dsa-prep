@@ -57,7 +57,33 @@ public class MajorityElementsNBy3 {
 		list.add(el1);
 		list.add(el2);
 		return list;
+	}
 
+	/**
+	 * <pre>
+	 * 
+	 * Use hash map store the value and its freq.
+	 * 
+	 * Find the elements who are > N/3 since there can be only 2 max elements, break the map loop.
+	 * 
+	 * </pre>
+	 */
+	private static List<Integer> majrityEleemntsBy3_better(int arr[]) {
+
+		return null;
+	}
+
+	/**
+	 * take one element and loop through all the elements. But make sure to check
+	 * only unique values freq each time. so maintain a list to store the currently
+	 * checked element, if same element found then dont look again in the loop.
+	 * after each element check the element count is > N/3, and add it to the result
+	 * list.
+	 * 
+	 */
+	private static List<Integer> majorityElementBy3_bruteForce(int arr[]) {
+
+		return null;
 	}
 
 }

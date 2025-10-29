@@ -64,7 +64,7 @@ public class ThreeSum {
 	 * 
 	 * </pre>
 	 */
-	private static List<List<Integer>> threeSum_Optimal(int arr[]) {
+	public static List<List<Integer>> threeSum_Optimal(int arr[]) {
 		List<List<Integer>> list = new ArrayList<>();
 
 		int iPrev = Integer.MIN_VALUE;
@@ -147,7 +147,7 @@ public class ThreeSum {
 					List<Integer> list = new ArrayList<>();
 					list.add(arr[i]);
 					list.add(arr[j]);
-					list.add(-(arr[i] + arr[j]));
+					list.add(0 - (arr[i] + arr[j]));
 					list.sort(Integer::compare);
 					set.add(list);
 				}

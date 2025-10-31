@@ -20,7 +20,22 @@ public class BubbleSort_ALgo {
 	}
 
 	/**
+	 * <pre>
 	 * Adjacent swapping
+	 * 
+	 * { 13, 46, 24, 52, 20, 9 }
+	 * 
+	 * First outer iteration : multiple inner iteration
+	 * { 13, 46, 24, 52, 9, 20 }
+	 * continue as 13 < 46
+	 * { 13, 24, 46, 52, 20, 9 }
+	 * continue as 24 < 46 
+	 * { 13, 24, 46, 20, 52, 9 }
+	 * { 13, 24, 46, 20, 52, 9 }
+	 * { 13, 24, 46, 20, 9, 52 }
+	 * after first iteration the largest values has reached at end, so next loop should run
+	 * till 4th index.
+	 * </pre>
 	 */
 	public static void bubbleSOrt(int arr[]) {
 		int n = arr.length;

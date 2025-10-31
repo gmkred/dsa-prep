@@ -5,6 +5,10 @@ package striver_dsa_sheet.algos;
  * 
  * 
  * Takes an element and place it in it's correct order
+ * 
+ * Move the elements until its greater then next element, when it become less than
+ * next element, that means it is in its correct order in that iteration.
+ * 
  * </pre>
  * 
  */

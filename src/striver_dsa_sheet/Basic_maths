@@ -102,6 +102,11 @@ a=	10	9	8	7	6	5	4	3
 a = 8(13)/2  == 4(13) == 52
 
 
+Summation of square of first N natural numbers
+
+S(n^2) = (n(n+1)(2n+1))/6
+
+
 ------------
 Union and intersection
 

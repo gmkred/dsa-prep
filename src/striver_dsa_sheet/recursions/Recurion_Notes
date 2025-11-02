@@ -1,0 +1,10 @@
+Recursion : 
+When a function calls itself until a specified condition is met.
+
+Basic recursion problems:
+
+Print Name 5 times
+Print linearly from 1 to N
+print from N to 1
+Print linearly from 1 to N(But by back track)
+Print from N to 1 (by back track)

@@ -21,7 +21,7 @@ package striver_dsa_sheet.dynamicProgramming;
 public class FrogJump {
 	public static void main(String[] args) {
 
-		int heights[] = { 10, 20, 30, 10 };
+		int heights[] = { 10, 30, 20, 10 };
 		System.out.println(forgJumpRec(heights, heights.length - 1));
 		int dp[] = new int[heights.length + 1];
 		for (int i = 0; i < dp.length; i++) {
@@ -87,7 +87,9 @@ public class FrogJump {
 		int twoSteps = Integer.MAX_VALUE;
 		for (int i = 1; i <= index; i++) {
 			oneStep = dp[i - 1] + Math.abs(heights[i] - heights[i - 1]);
-			if (i > 2) {
+			if (i > 1) {
+				// important : dp[i-2] we have to see the min of previous-> previous for two
+				// steps. Because the scope for 2 step pointer is index-2, not index-1.
 				twoSteps = dp[i - 2] + Math.abs(heights[i] - heights[i - 2]);
 			}
 			dp[i] = Math.min(oneStep, twoSteps);
@@ -104,7 +106,7 @@ public class FrogJump {
 		int twoSteps = Integer.MAX_VALUE;
 		for (int i = 1; i <= index; i++) {
 			oneStep = prev1 + Math.abs(heights[i] - heights[i - 1]);
-			if (i > 2) {
+			if (i > 1) {
 				twoSteps = prev2 + Math.abs(heights[i] - heights[i - 2]);
 			}
 			curMin = Math.min(twoSteps, oneStep);

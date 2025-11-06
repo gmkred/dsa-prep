@@ -1,10 +1,80 @@
 Dynamic Programming
 Those who does not remember  the past are condemned to repeat it
 
-Memoization :
+When ever we try to solve same problem again, agian in recursion, its called overlapping subproblems.
+This is where memoization comes 
+
+Memoization : 
+---------------
 Top down
+--------
+we tend to store the values of sub problems in some Map/Table.
+based on parameters, if there is one parameter, we use 1D array.
+example with fibonnaci recursion of 5
+			f(n-1)+f(n-2)
+				5
+			 4	             3
+         3       2   	  2     1
+       2   1   1   0    1   0  
+     1   0
+ if we observe, there are sub problems solving fibonnaci(2) 3 times
+ each time it returns same value, so why not store the value in an array
+ and take the value from there instead of solving it again.
+ 
+DP array		-1 -1 -1 -1 -1 -1
+		         _  _  _  _  _  _
+		         0  1  2  3  4  5
+
+suppose fibonnaci of 2, return 0+1 = 1 store it at 2nd index
+
+-1 -1  1 -1 -1 -1
+ _  _  _  _  _  _
+ 0  1  2  3  4  5
+
+fibonnaci of 3 retruns, 0+1+1 = 2,store it in 3rd index.
+
+-1 -1  1  2 -1 -1
+ _  _  _  _  _  _
+ 0  1  2  3  4  5
+
+so next time instead of solving for 2 and 3 we can take values from array which will save the time. 
+
+*****Steps to follow*******
+1. Declare a DP array with [n+1].
+	becasue array is index based;
+2. DP[n] should store the final value.
+3. For each recursion, check if same sub problem previously solved, if yes just take the value.
 
 
 
 Tabulation :
+-------------
 Bottom up
+---------
+Go from the base case to the required.
+
+steps :
+1. declare DP array [n+1]
+2. dp[0] =0 and dp[1] = 1 for fibonnaci.
+3. Instead of recursion we use loop starting from 2 for fibonacci.
+	for(int i =2;i<=n;i++){
+		dp[i] = dp[i-1]+dp[i-2];
+	}
+this is how we can make tabulation.
+
+
+How to find a DP problem:
+
+1. Count the total no of ways
+2. Max or min steps
+
+Like try all possible ways, thats whe we try to apply recursion.
+
+
+********Trick :
+1. try to represent the problem in terms of index.
+2. Do all possible stuff on that index according to problem statement.
+3. sum of all stuff or count all ways or min of all steps kind of problems.
+		
+
+

@@ -78,3 +78,27 @@ Like try all possible ways, thats whe we try to apply recursion.
 		
 
 
+1D arrays : 
+express every thing as indexes
+dp[n]
+
+2D arrays :
+express everything as rows and columns indexes.
+dp[rows][columns]
+
+3D problem
+express everything as i1,j1 and i2,j2
+Explore all the paths
+
+Base case:
+out of bound and destination reach.
+
+j1 < 0 || j1 >= col || j2 < 0 || j2 >= col
+return minimum numnber, but do not take MIN_VALUE
+
+******But we need only 1 row reference i, becasue when we move to next row, both pointer will be on same row.
+
+
+if there is a fixed point and variable points recommended to take start from the fixed point
+
+

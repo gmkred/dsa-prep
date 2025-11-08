@@ -48,13 +48,17 @@ public class CountPartitionsWithGivenKDifference {
 		for (int i = 0; i < arr.length; i++) {
 			total += arr[i];
 		}
-		int dp[] = new int[arr.length];
-		for (int i = 0; i < dp.length; i++) {
-			dp[i] = -1;
-		}
 		int target = (total + D) / 2;
+		int dp[][] = new int[arr.length][target + 1];
+		for (int i = 0; i < dp.length; i++) {
+			for (int t = 0; t <= target; t++) {
+				dp[i][t] = -1;
+			}
+		}
 		System.out.println(rec(arr, D, arr.length - 1, target));
-		System.out.println(recDP(arr, D, arr.length - 1, target, 0, dp));
+		System.out.println(recDP(arr, arr.length - 1, target, dp));
+		System.out.println(DPTabulation(arr, target));
+		System.out.println(NoDPTabulation(arr, target));
 
 	}
 
@@ -64,7 +68,6 @@ public class CountPartitionsWithGivenKDifference {
 			if (target == arr[index] || target == 0) {
 				return 1;
 			} else {
-
 				return 0;
 			}
 		}
@@ -80,23 +83,74 @@ public class CountPartitionsWithGivenKDifference {
 		return include + exclude;
 	}
 
-	private static int recDP(int arr[], int D, int index, int target, int dp[]) {
+	private static int recDP(int arr[], int index, int target, int dp[][]) {
 		if (index == 0) {
-			if (target == 0 || target == arr[index]) {
-				return 1;
+			if (target == 0) {
+				dp[index][target] = 1;
+				return dp[index][target];
+			}
+			if (target == arr[index]) {
+				dp[index][arr[target]] = 1;
+				return dp[index][target];
 			} else {
-				return 0;
+				dp[index][target] = 1;
+				return dp[index][target];
 			}
 		}
 		if (target == 0) {
-
-			return 1;
+			return dp[index][target];
+		}
+		if (dp[index][target] != -1) {
+			return dp[index][target];
 		}
 		int include = 0;
-		include += rec(arr, D, index - 1, target - arr[index]);
+		include = recDP(arr, index - 1, target - arr[index], dp);
 		int exclude = 0;
-		exclude += rec(arr, D, index - 1, target);
+		exclude = recDP(arr, index - 1, target, dp);
+		dp[index][target] = include > exclude ? include : exclude;
+		return dp[index][target];
+	}
 
-		return include + exclude;
+	private static int DPTabulation(int arr[], int target) {
+		boolean[][] dp = new boolean[arr.length][target + 1];
+		// base case
+		for (int i = 0; i < arr.length; i++) {
+			dp[i][0] = true;
+		}
+		dp[0][arr[0]] = true;
+
+		for (int index = 1; index < arr.length; index++) {
+			for (int t = 1; t <= target; t++) {
+				boolean include = false;
+				if (arr[index] <= t) {
+					include = dp[index - 1][t - arr[index]];
+				}
+				boolean exclude = dp[index - 1][t];
+				dp[index][t] = include || exclude;
+			}
+		}
+		return dp[arr.length - 1][target] ? 1 : 0;
+	}
+
+	private static int NoDPTabulation(int arr[], int target) {
+		boolean[] previous = new boolean[target + 1];
+		// base cases
+		previous[0] = true;
+		previous[arr[0]] = true;
+
+		for (int index = 1; index < arr.length; index++) {
+			boolean[] current = new boolean[target + 1];
+			current[0] = true;
+			for (int t = 1; t <= target; t++) {
+				boolean include = false;
+				if (arr[index] <= t) {
+					include = previous[t - arr[index]];
+				}
+				boolean exclude = previous[t];
+				current[t] = include || exclude;
+			}
+			previous = current;
+		}
+		return previous[target] ? 1 : 0;
 	}
 }

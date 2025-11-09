@@ -7,7 +7,6 @@ package striver_dsa_sheet.dynamicProgramming;
  * 
  * divide into 2 subsets which should have the diff D
  * 
- * 
  * D = 3
  * 
  * {5+2} - {6+4} = 3
@@ -42,13 +41,16 @@ package striver_dsa_sheet.dynamicProgramming;
  */
 public class CountPartitionsWithGivenKDifference {
 	public static void main(String[] args) {
-		int arr[] = { 5, 2, 6, 4 };
+		int arr[] = { 5, 2, 6, 4, 2, 1, 3 };
 		int D = 3;
 		int total = 0;
 		for (int i = 0; i < arr.length; i++) {
 			total += arr[i];
 		}
 		int target = (total + D) / 2;
+		if ((total - target < 0) || (total - D) % 2 != 0) {
+			return;
+		}
 		int dp[][] = new int[arr.length][target + 1];
 		for (int i = 0; i < dp.length; i++) {
 			for (int t = 0; t <= target; t++) {
@@ -62,10 +64,12 @@ public class CountPartitionsWithGivenKDifference {
 
 	}
 
-//TC : O(2^N) SC : O(N) auxiliary
+	// TC : O(2^N) SC : O(N) auxiliary
 	private static int rec(int arr[], int D, int index, int target) {
 		if (index == 0) {
-			if (target == arr[index] || target == 0) {
+			if (target == 0 && arr[0] == 0) {
+				return 2;
+			} else if (target == 0 || target == arr[0]) {
 				return 1;
 			} else {
 				return 0;
@@ -75,82 +79,95 @@ public class CountPartitionsWithGivenKDifference {
 			return 1;
 		}
 		int include = 0;
-		include += rec(arr, D, index - 1, target - arr[index]);
+		if (arr[index] <= target) {
+			include = rec(arr, D, index - 1, target - arr[index]);
+		}
 
 		int exclude = 0;
-		exclude += rec(arr, D, index - 1, target);
+		exclude = rec(arr, D, index - 1, target);
 
 		return include + exclude;
 	}
 
+	// Recursive DP approach
 	private static int recDP(int arr[], int index, int target, int dp[][]) {
 		if (index == 0) {
-			if (target == 0) {
-				dp[index][target] = 1;
+			if (target == 0 && arr[0] == 0) {
+				dp[index][target] = 2;
 				return dp[index][target];
 			}
-			if (target == arr[index]) {
-				dp[index][arr[target]] = 1;
+			if (target == 0 || target == arr[index]) {
+				dp[index][target] = 1;
 				return dp[index][target];
 			} else {
-				dp[index][target] = 1;
+				dp[index][target] = 0;
 				return dp[index][target];
 			}
 		}
 		if (target == 0) {
-			return dp[index][target];
+			return dp[index][target] = 1;
 		}
+
 		if (dp[index][target] != -1) {
 			return dp[index][target];
 		}
 		int include = 0;
-		include = recDP(arr, index - 1, target - arr[index], dp);
 		int exclude = 0;
+		if (arr[index] <= target) {
+			include = recDP(arr, index - 1, target - arr[index], dp);
+		}
 		exclude = recDP(arr, index - 1, target, dp);
-		dp[index][target] = include > exclude ? include : exclude;
+		dp[index][target] = include + exclude;
 		return dp[index][target];
 	}
 
+	// Tabulation DP approach
 	private static int DPTabulation(int arr[], int target) {
-		boolean[][] dp = new boolean[arr.length][target + 1];
-		// base case
+		int[][] dp = new int[arr.length][target + 1];
+
+		// base case: dp[i][0] = 1 for all i (since sum 0 is always achievable by not
+		// including elements)
 		for (int i = 0; i < arr.length; i++) {
-			dp[i][0] = true;
+			dp[i][0] = 1;
 		}
-		dp[0][arr[0]] = true;
+		// initialize dp[0][arr[0]]
+		dp[0][0] = 1;
+		dp[0][arr[0]] = 1;
 
 		for (int index = 1; index < arr.length; index++) {
 			for (int t = 1; t <= target; t++) {
-				boolean include = false;
+				int include = 0;
 				if (arr[index] <= t) {
 					include = dp[index - 1][t - arr[index]];
 				}
-				boolean exclude = dp[index - 1][t];
-				dp[index][t] = include || exclude;
+				int exclude = dp[index - 1][t];
+				dp[index][t] = include + exclude;
 			}
 		}
-		return dp[arr.length - 1][target] ? 1 : 0;
+		return dp[arr.length - 1][target];
 	}
 
+	// Optimized Tabulation DP approach (Space Optimization)
 	private static int NoDPTabulation(int arr[], int target) {
-		boolean[] previous = new boolean[target + 1];
-		// base cases
-		previous[0] = true;
-		previous[arr[0]] = true;
+		int[] previous = new int[target + 1];
+		previous[0] = 1; // base case: sum 0 can be achieved by excluding all elements
+
+		previous[arr[0]] = 1;
 
 		for (int index = 1; index < arr.length; index++) {
-			boolean[] current = new boolean[target + 1];
-			current[0] = true;
+			int[] current = new int[target + 1];
+			current[0] = 1; // sum 0 is always achievable
+
 			for (int t = 1; t <= target; t++) {
-				boolean include = false;
+				int include = 0;
 				if (arr[index] <= t) {
 					include = previous[t - arr[index]];
 				}
-				boolean exclude = previous[t];
-				current[t] = include || exclude;
+				int exclude = previous[t];
+				current[t] = include + exclude;
 			}
-			previous = current;
+			previous = current; // move to the next row
 		}
-		return previous[target] ? 1 : 0;
+		return previous[target];
 	}
 }

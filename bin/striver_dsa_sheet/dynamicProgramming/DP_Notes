@@ -102,3 +102,35 @@ return minimum numnber, but do not take MIN_VALUE
 if there is a fixed point and variable points recommended to take start from the fixed point
 
 
+
+****** 0/1 KNAPSACK
+-------------------
+
+Verrrrrrrrryyyyy Important.
+
+What is knapsack ?
+
+N=3, each item has particular weight and a value.
+
+weight	3	4	5
+value	30	50	60
+
+Thief bag can only carry weight 8.
+Maximum value with given weight thief can steal.
+{4+5} = 9 X weight is not in bags range
+{50+60} = 110 
+
+{3+4} = 7 <=8 Possible
+{30+50} = 80 this is the maximum value thief can steal.
+
+Greedy wont work because it has no uniformity.
+
+so we sue recursion:
+
+Steps :
+
+1. Express the problem in terms of array. [index, value]
+2. Explore all possibilities. Pick / Not pick.
+3. Max(all possibilities)
+
+

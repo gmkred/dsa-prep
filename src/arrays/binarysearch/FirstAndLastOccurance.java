@@ -28,8 +28,10 @@ public class FirstAndLastOccurance {
 		// another edge case check (upperbound -1) index contains x or else x is not
 		// present in array.
 		ans = binarySearch(arr, x);
-		for (int i : ans) {
-			System.out.print(i + " ");
+		if (ans[0] != -1 && ans[1] != -1) {
+			for (int i : ans) {
+				System.out.print(i + " ");
+			}
 		}
 	}
 

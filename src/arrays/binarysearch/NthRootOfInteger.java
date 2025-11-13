@@ -1,4 +1,4 @@
-package striver_dsa_sheet.binarysearch;
+package arrays.binarysearch;
 
 /**
  * <pre>
@@ -90,20 +90,55 @@ package striver_dsa_sheet.binarysearch;
  * 
  * middle = (2.98046875+3.03125)/2 = 3.005859375
  * 
- * >27
+ * > 27
  * 
+ * TC : if one decimal is considered 1, 1.1, 1.2, 1.3 ......26.8, 26.9, 27
  * 
+ * N*Log M*10
+ * 
+ * if 2 decimal places
+ * 
+ * N*log M*100
+ * 
+ * if 3 decimal
+ * 
+ * N*log M^D
  * 
  * 
  * </pre>
  */
 public class NthRootOfInteger {
 	public static void main(String[] args) {
-
+		int N = 3;
+		int M = 27;
+		// which number cube is 27
+		System.out.println(NthRoot(M, N));
 	}
 
-	private static double NthRoot(int N, int M) {
-		return M;
+	private static int NthRoot(int M, int N) {
+		// epsilon 1e-6 == 1/1000000 == 0.000001
+		double diff = 1e-6;
 
+		double low = 1;
+		double high = M;
+		double mid = 0;
+		while ((high - low) > diff) {
+			mid = (low + high) / 2.0;
+			double p = power(mid, N);
+			if (M > p) {
+				low = mid;
+			} else {
+				high = mid;
+			}
+		}
+		return (int) mid;
+	}
+
+	private static double power(double num, int power) {
+		double p = 1;
+		for (int i = 0; i < power; i++) {
+			p *= num;
+		}
+		return p;
 	}
 }

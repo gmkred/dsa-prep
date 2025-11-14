@@ -8,3 +8,204 @@ Array stored in computer memory in contiguous way.
 
 {1, 2,  3,  4,  5}
 x  x+1 x+2 x+3 x+4
+
+
+Bit - binary
+
+7 base 10
+          rem
+	2| 7   1
+	2| 3   1
+	   1
+Binary representation of 7 is 0111
+
+13 base 10
+            rem
+	2| 13    1 
+	2| 6     0
+	2| 3     1
+	   1
+Binary representation of 13 is 1101	   
+
+
+from binary to base 10
+
+
+1101
+take right most digit and multiply with 2^0
+
+1 * 2^0 + 0 * 2^1 + 1 * 2^2 + 1 * 2^3
+1 * 1   + 0 * 2   + 1 * 4   + 1 * 8
+1       +     0   +     4   +     8
+13 
+
+
+computer stores in binary format
+
+4 bytes = 32 bits
+Decimal = 40
+
+binary of 40
+00000000000000000000000000101000
+
+
+1's compliment
+
+13 = (1101)
+flip all the bits
+(0010)
+
+2's compliment
+
+13 = (1101)
+step 1 : figure out the 1's compliment of given numbner
+step 2 : add a 1 to it
+
+13 = (1101)
+
+flip (0010)
+2's  (0001) 
+-----------
+     (0011) = 3
+     
+Operators:
+
+AND
+
+T & T = T
+T & F = F
+F & F = F
+
+OR
+
+T & T = T
+T & F = T
+F & F = F
+
+XOR
+
+T & T = F
+T & F = T
+F & F = F
+
+0011
+0010
+-----
+0001
+
+
+Shift operatiors 
+
+right >>
+X =13 >>1
+
+001101 >> 1, move binary by 1 step
+000110 = 6
+
+X = 13 >>2
+001101 >> 2
+000011 = 3
+
+
+Formula: x >> k = (x/2^k)
+
+2 ^ k, how many bits should be moved
+
+*****
+X = -13, how does it stored in computer.
+
+31'st bit is used for sign
+
+1 = negative
+0 = positive
+
+00000000000000000000000000001101
+
+How to do it in coding?
+
+first write plain binary for 13.
+1101
+apply 2's compliment
+
+
+
+1111111111111111111111111110010
+0000000000000000000000000000001
+-------------------------------
+1111111111111111111111111110011 stored as negative number
+
+largest integer
+31st 0 = positive
+
+0111111111111111111111111111111
+ 2^30 to 2^0
+ 
+ 2^30-1
+
+1000000000000000000000000000000
+ convert to 1's compliment
+0111111111111111111111111111111
+2's compliment
+0000000000000000000000000000001
+-------------------------------
+1000000000000000000000000000000
+  -2^31 because all are 0;
+ 
+
+
+0011 = 3 is the
+
+<< left shift
+
+X =13
+
+001101 << 1, move binary by 1 step
+011010 = 25
+
+X =13 << 2
+
+001101 << 2
+110100 = 52
+Formula = x << k = (x * 2^k)
+2 ^ k, how many bits should be moved
+
+0111111111111111111111111111111
+left shifting makes the bits move left words
+which make it ovreflow and gives a negative number
+
+
+NOT ~ operator
+
+x = ~5
+
+1.flip
+2.check if -ve
+	if yes tehn stores the 2's compliment
+	or stop
+
+000000......101
+111111......010
+its negative so converst to 2's compliment
+
+000000......101 1's com
+000000......001
+-----------------
+100000000000110 = negative -6 is  stored
+
+
+x = ~ -6
+If it negative number always convert to 2's compliment
+Computer never store -6, it always store its 2's compliment.
+0000000000....110
+1's
+1111111111....001
+2's
+               +1
+-------------------
+1111111111....010
+
+flip
+
+0000000000....101
+non negative
+so number is 5

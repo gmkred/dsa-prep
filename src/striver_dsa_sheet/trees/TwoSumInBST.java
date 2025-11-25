@@ -48,6 +48,25 @@ public class TwoSumInBST {
 
 		int target = 8;
 		System.out.println(findTarget(node10, target));
+		System.out.println(findTargetOptimal(node10, target));
+
+	}
+
+	public static boolean findTargetOptimal(TreeNode node, int k) {
+		BSTIterator left = new BSTIterator(node, false);
+		BSTIterator right = new BSTIterator(node, true);
+
+		int i = left.next();
+		int j = right.next();
+		while (i < j) {
+			if (i + j == k)
+				return true;
+			else if (i + j < k)
+				i = left.next();
+			else
+				j = right.next();
+		}
+		return false;
 	}
 
 //TC : O(N) + O(N)

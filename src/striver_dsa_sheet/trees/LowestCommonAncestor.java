@@ -50,8 +50,11 @@ public class LowestCommonAncestor {
 		}
 		TreeNode left = lowestCommonAncestor(root.left, p, q);
 		TreeNode right = lowestCommonAncestor(root.right, p, q);
+		// if both p and q are found then return current node as ancestor.
 		if (left != null && right != null) {
 			return root;
+			// it is possible that p or q can be the ancestor, then we cannot go further so
+			// left or right will be null, so return which is not null.
 		} else if (left == null) {
 			return right;
 		} else {

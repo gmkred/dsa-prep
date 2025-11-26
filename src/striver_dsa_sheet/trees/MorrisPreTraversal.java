@@ -44,7 +44,7 @@ public class MorrisPreTraversal {
 				cur = cur.right;
 			} else {
 				TreeNode prev = cur.left;
-				// find he right most node from this root node.
+				// find the right most node from this root node.
 				while (prev.right != null && prev.right != cur) {
 					prev = prev.right;
 				}

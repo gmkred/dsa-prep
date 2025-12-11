@@ -49,7 +49,7 @@ public class DetectCycleInUndirectedGraphUsingBFS {
 	}
 
 	// source is given
-	public static boolean isCyclincGraph(ArrayList<ArrayList<Integer>> adj, int n, int src, boolean[] visited) {
+	public static boolean isCyclinGraph(ArrayList<ArrayList<Integer>> adj, int n, int src, boolean[] visited) {
 
 		Queue<Pair> q = new LinkedList();
 		q.offer(new Pair(src, -1));
@@ -77,7 +77,7 @@ public class DetectCycleInUndirectedGraphUsingBFS {
 		boolean visisted[] = new boolean[n];
 		for (int i = 0; i < n; i++) {
 			if (!visisted[i]) {
-				if (isCyclincGraph(adj, i, src, visisted)) {
+				if (isCyclinGraph(adj, i, src, visisted)) {
 					return true;
 				}
 			}

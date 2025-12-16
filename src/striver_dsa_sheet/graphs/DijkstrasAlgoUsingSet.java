@@ -1,0 +1,86 @@
+package striver_dsa_sheet.graphs;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.TreeSet;
+
+import striver_dsa_sheet.graphs.DijkstrasAlgo.WeightedNode;
+
+/**
+ * <pre>
+ * 
+ * TreeSet : unique values and the smallest at the top and it stores everything in the ascending order.
+ * 
+ * 
+ * </pre>
+ */
+public class DijkstrasAlgoUsingSet {
+	public static void main(String[] args) {
+
+		List<List<WeightedNode>> adj = new ArrayList();
+		for (int i = 0; i < 6; i++) {
+			adj.add(new ArrayList<>());
+		}
+
+		adj.get(0).add(new WeightedNode(1, 4));
+		adj.get(0).add(new WeightedNode(2, 4));
+		adj.get(1).add(new WeightedNode(0, 4));
+		adj.get(1).add(new WeightedNode(2, 2));
+		adj.get(2).add(new WeightedNode(0, 4));
+		adj.get(2).add(new WeightedNode(1, 2));
+		adj.get(2).add(new WeightedNode(3, 3));
+		adj.get(2).add(new WeightedNode(4, 1));
+		adj.get(2).add(new WeightedNode(5, 6));
+		adj.get(3).add(new WeightedNode(2, 3));
+		adj.get(3).add(new WeightedNode(5, 2));
+		adj.get(4).add(new WeightedNode(2, 1));
+		adj.get(4).add(new WeightedNode(5, 3));
+		adj.get(5).add(new WeightedNode(2, 6));
+		adj.get(5).add(new WeightedNode(3, 2));
+		adj.get(5).add(new WeightedNode(4, 3));
+		System.out.println(adj);
+
+		Comparator<WeightedNode> comp = (x, y) -> {
+			if (x.weight != y.weight) {
+				return x.weight - y.weight;
+			} else {
+				return x.node - y.node;
+			}
+		};
+		TreeSet<WeightedNode> set = new TreeSet<>(comp);
+		int disArray[] = new int[adj.size()];
+		System.out.println(Arrays.toString(dijkstras(adj, set, disArray, 0)));
+
+	}
+
+	public static int[] dijkstras(List<List<WeightedNode>> adj, TreeSet<WeightedNode> set, int[] disArray,
+			int srcNode) {
+		for (int i = 0; i < disArray.length; i++) {
+			if (i != srcNode) {
+				// initialize with max distance
+				disArray[i] = (int) 1e9;
+			}
+		}
+		set.add(new WeightedNode(srcNode, 0));
+		while (!set.isEmpty()) {
+			WeightedNode temp = set.pollFirst();
+
+			for (WeightedNode next : adj.get(temp.node)) {
+				// check if the next node dist + current node dist is shorter than the next
+				// nodes distance in distance array.
+				// This is needed because from source to next node, there can be multiple paths,
+				// we need to update our dis array with shortest distance from source to a node.
+				if (next.weight + temp.weight < disArray[next.node]) {
+					disArray[next.node] = next.weight + temp.weight;
+					// add new WeightedNode to PQ with updated distance from source to next node.
+					set.add(new WeightedNode(next.node, disArray[next.node]));
+				}
+			}
+		}
+		return disArray;
+	}
+}

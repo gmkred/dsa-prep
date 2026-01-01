@@ -18,7 +18,7 @@ import striver_dsa_sheet.graphs.DijkstrasAlgo.WeightedNode;
  * Try to remember where am i coming from.
  * 
  * PQ
- * ParentArray : where am i coming from
+ * ParentArray : where am i coming from. used for back tracing.
  * dist[]
  * 
  * </pre>

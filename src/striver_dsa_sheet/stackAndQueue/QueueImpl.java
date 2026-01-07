@@ -1,4 +1,4 @@
-package striver_dsa_sheet;
+package striver_dsa_sheet.stackAndQueue;
 
 public class QueueImpl {
 
@@ -43,6 +43,7 @@ public class QueueImpl {
 		if (queueSize == 1) {
 			start = end = -1;
 		} else {
+			// using modulus will not overflow the index value
 			start = (start + 1) % size;
 		}
 		queueSize--;
